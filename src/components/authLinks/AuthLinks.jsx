@@ -22,7 +22,7 @@ function AuthLinks() {
           <Link href="/write" className={styles.links}>
             Write
           </Link>
-          <span className={styles.links} onClick={() => signOut()}>
+          <span className={styles.links} onClick={signOut}>
             Logout
           </span>
         </>
