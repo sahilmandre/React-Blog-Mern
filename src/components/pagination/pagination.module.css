@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 100px;
+  color: white;
+  cursor: pointer;
+  padding: 16px;
+  background-color: crimson;
+  border: none;
+}

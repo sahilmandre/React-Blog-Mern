@@ -1,0 +1,62 @@
+.container {
+  margin-top: 50px;
+}
+
+.title {
+  color: var(--softTextColor);
+  margin-bottom: 30px;
+}
+
+.write {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: 20px;
+}
+
+.button {
+  padding: 16px 20px;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.userImage {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--softTextColor);
+}
+
+.commentDesc {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.comments {
+  margin-top: 50px;
+}
+
+.comment {
+  margin-bottom: 50px;
+}

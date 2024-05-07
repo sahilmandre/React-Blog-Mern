@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.wrapper {
+  padding: 120px 150px;
+  background-color: var(--softBg);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.socialLoginButton {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialLoginButton:first-child {
+  background-color: #ff5555;
+}
+.socialLoginButton:nth-child(2) {
+  background-color: black;
+}
+
+.socialLoginButton:nth-child(3) {
+  background-color: rgb(20, 102, 203);
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 50px 80px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    padding: 40px 60px;
+  }
+
+  .socialLoginButton {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
