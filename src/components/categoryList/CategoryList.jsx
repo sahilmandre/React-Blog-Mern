@@ -1,69 +1,33 @@
-import React from "react";
-import styles from "./category.module.css";
-import Link from "next/link";
+import { getCategories } from "@/data/data";
 import Image from "next/image";
+import Link from "next/link";
+import styles from "./category.module.css";
 
-function CategoryList() {
+async function CategoryList() {
+  const dataFetch = await getCategories();
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Popular Categories</h1>
       <div className={styles.categories}>
-        <Link
-          href="/blog?cat=style"
-          className={`${styles.category} ${styles.style}`}
-        >
-          <Image
-            src="/style.png"
-            alt="style"
-            width={32}
-            height={32}
-            className={styles.image}
-          />
-          Style
-        </Link>
-        <Link href={`/blog`} className={`${styles.travel} ${styles.category}`}>
-          <Image
-            src="/travel.png"
-            alt=""
-            width={32}
-            height={32}
-            className={styles.image}
-          />
-          Travel
-        </Link>
-
-        <Link href={`/blog`} className={`${styles.culture} ${styles.category}`}>
-          <Image
-            src="/culture.png"
-            alt=""
-            width={32}
-            height={32}
-            className={styles.image}
-          />
-          Culture
-        </Link>
-
-        <Link href={`/blog`} className={`${styles.coding} ${styles.category}`}>
-          <Image
-            src="/coding.png"
-            alt=""
-            width={32}
-            height={32}
-            className={styles.image}
-          />
-          Coding
-        </Link>
-
-        <Link href={`/blog`} className={`${styles.food} ${styles.category}`}>
-          <Image
-            src="/food.png"
-            alt=""
-            width={32}
-            height={32}
-            className={styles.image}
-          />
-          Food
-        </Link>
+        {dataFetch?.map((item) => (
+          <Link
+            href="/blog?cat=style"
+            className={`${styles.category} ${styles[item.slug]}`}
+            key={item._id}
+          >
+            {item.img && (
+              <Image
+                src={item.img}
+                alt="style"
+                width={32}
+                height={32}
+                className={styles.image}
+              />
+            )}
+            {item.title}
+          </Link>
+        ))}
       </div>
     </div>
   );
