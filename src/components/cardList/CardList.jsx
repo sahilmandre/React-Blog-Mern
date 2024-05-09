@@ -3,22 +3,8 @@ import Card from "../card/Card";
 import Pagination from "../pagination/Pagination";
 import styles from "./cardList.module.css";
 
-// export async function getPostss(page) {
-//   const res = await fetch(`http://localhost:3000/api/posts?page=${page}`, {
-//     cache: "no-store",
-//   });
-
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
-
-//   const data = await res.json();
-//   console.log(data);
-//   return data;
-// }
-
-async function CardList({ page }) {
-  const { posts, count } = await getPosts(page);
+async function CardList({ page, cat }) {
+  const { posts, count } = await getPosts(page, cat);
   // const dataFetch = await getPostss(page);
 
   const POST_PER_PAGE = 2;
