@@ -1,11 +1,15 @@
-.container {
-}
-
-.editorContainer {
+.add {
+  z-index: 999;
   display: flex;
   gap: 20px;
-  height: 700px;
-  position: relative;
+  position: absolute;
+  width: 100%;
+  background-color: var(--bg);
+  left: 50px;
+}
+
+.addButton {
+  border-color: #1a8917;
 }
 
 .button,
@@ -21,22 +25,14 @@
   cursor: pointer;
 }
 
-.textEditor {
-  width: 100%;
+.container {
 }
 
-.addButton {
-  border-color: #1a8917;
-}
-
-.add {
-  z-index: 999;
+.editorContainer {
   display: flex;
   gap: 20px;
-  position: absolute;
-  width: 100%;
-  background-color: var(--bg);
-  left: 50px;
+  height: 700px;
+  position: relative;
 }
 
 .input {
@@ -62,4 +58,8 @@
   color: white;
   cursor: pointer;
   border-radius: 20px;
+}
+
+.textEditor {
+  width: 100%;
 }

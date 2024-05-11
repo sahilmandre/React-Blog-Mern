@@ -1,3 +1,4 @@
+import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 
@@ -26,6 +27,32 @@ export const GET = async (req) => {
 
     return NextResponse.json({ posts, count }, { status: 200 });
   } catch (error) {
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong please try again" }),
+      { status: 500 }
+    );
+  }
+};
+
+// Create a Post
+export const POST = async (req) => {
+  const session = await getAuthSession();
+
+  if (!session) {
+    return new NextResponse(JSON.stringify({ message: "Not Authenticated" }), {
+      status: 401,
+    });
+  }
+
+  try {
+    const body = await req.json();
+    const post = await prisma.post.create({
+      data: { ...body, userEmail: session.user.email },
+    });
+
+    return NextResponse.json(post, { status: 200 });
+  } catch (error) {
+    console.log(error);
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong please try again" }),
       { status: 500 }
