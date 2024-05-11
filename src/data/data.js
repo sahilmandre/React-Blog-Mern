@@ -8,7 +8,7 @@ export async function getCategories() {
   }
 
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
 
@@ -25,6 +25,6 @@ export async function getPosts(page, cat) {
   }
 
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
