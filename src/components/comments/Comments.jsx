@@ -6,24 +6,27 @@ import Link from "next/link";
 import Image from "next/image";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import { commentFetcher } from "@/data/data";
 
-async function fetcher(url) {
-  const res = await fetch(url);
-  const data = await res.json();
+// async function fetcher(url) {
+//   const res = await fetch(url);
+//   const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data.message);
-  }
+//   if (!res.ok) {
+//     throw new Error(data.message);
+//   }
 
-  return data;
-}
+//   return data;
+// }
+
+commentFetcher();
 
 function Comments({ postSlug }) {
   const { status } = useSession();
 
   const { data, mutate, isLoading } = useSWR(
     `http://localhost:3000/api/comments?postSlug=${postSlug}`,
-    fetcher
+    commentFetcher
   );
 
   const [desc, setDesc] = useState("");
@@ -47,7 +50,7 @@ function Comments({ postSlug }) {
             className={styles.input}
             onChange={(e) => setDesc(e.target.value)}
           />
-          <button className={styles.button} onClick={handleSubmit}>
+          <button className={styles.button} onClick={() => handleSubmit()}>
             Send
           </button>
         </div>

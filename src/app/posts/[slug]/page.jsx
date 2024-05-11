@@ -3,24 +3,12 @@ import styles from "./singlePage.module.css";
 import Menu from "@/components/menu/Menu";
 import Image from "next/image";
 import Comments from "@/components/comments/Comments";
-
-async function getDatas(slug) {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const data = await res.json();
-  return data;
-}
+import { getSinglePost } from "@/data/data";
 
 async function SinglePage({ params }) {
   const { slug } = params;
 
-  const data = await getDatas(slug);
+  const data = await getSinglePost(slug);
 
   return (
     <div className={styles.container}>
@@ -40,7 +28,7 @@ async function SinglePage({ params }) {
             )}
             <div className={styles.userTextContainer}>
               <span className={styles.username}>{data?.user.name}</span>
-              <span className={styles.date}> 10.02.2024</span>
+              <span className={styles.date}>{data.createdAt.slice(0, 10)}</span>
             </div>
           </div>
         </div>

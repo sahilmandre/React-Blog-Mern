@@ -8,18 +8,20 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { useSession } from "next-auth/react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import styles from "./write.module.css";
+import { handlePostSubmit } from "@/data/data";
 
 const storage = getStorage(app);
 
 function WritePage() {
   const { status } = useSession();
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+  const ReactQuill = require("react-quill");
+
   const router = useRouter();
 
   const [file, setFile] = useState(null);
@@ -83,20 +85,14 @@ function WritePage() {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  async function handlePostSubmit() {
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title: title,
-        desc: value,
-        img: media,
-        slug: slugify(title),
-        catSlug: "test",
-      }),
+  const handleSubmit = () => {
+    handlePostSubmit({
+      title: title,
+      value: value,
+      media: media,
+      slug: slugify(title),
     });
-
-    console.log(res);
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -166,7 +162,7 @@ function WritePage() {
         />
       </div>
 
-      <button className={styles.publish} onClick={handlePostSubmit}>
+      <button className={styles.publish} onClick={handleSubmit}>
         Publish
       </button>
     </div>
